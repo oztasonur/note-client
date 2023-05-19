@@ -1,10 +1,16 @@
 import "bulma/css/bulma.css";
 import '../index.css';
 
-function NoteCard({ note }) {
+function NoteCard({ note, back }) {
+
+  const handleClick = () => {
+    back(note);
+  }
+
+
   return (
     <div class="column">
-      <div class="card custom-background">
+      <div class="card custom-background" onClick={handleClick}>
         <div class="card-image"></div>
         <div class="card-content">
           <div class="media">
