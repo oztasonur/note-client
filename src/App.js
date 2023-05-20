@@ -5,10 +5,12 @@ import api from "./api/AxiosConfig";
 import SingleNote from "./components/SingleNote";
 import Header from "./components/Header";
 import NoteList from "./components/NoteList";
+import NewNote from "./components/NewNote";
 
 function App() {
   const [data, setData] = useState([]);
   const [selectedNote, setSelectedNote] = useState(null);
+  const [newNote, setNewNote] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,12 +24,21 @@ function App() {
 
     fetchData();
   }, []);
-  
+
   const showSelectedNote = (note) => {
     setSelectedNote(note);
   };
 
-  if (selectedNote) {
+  const showNewNote = () => {
+    setNewNote(true);
+  };
+
+  if (newNote) {
+    return(
+      <NewNote />
+    );
+    
+  } else if (selectedNote) {
     return (
       <div>
         <SingleNote note={selectedNote} cancelButton={showSelectedNote} />
@@ -36,8 +47,8 @@ function App() {
   } else {
     return (
       <div>
-      <Header />
-      <NoteList notes={data} showSelectedNote={showSelectedNote}/>      
+        <Header showNewNote={showNewNote}/>
+        <NoteList notes={data} showSelectedNote={showSelectedNote} />
       </div>
     );
   }
