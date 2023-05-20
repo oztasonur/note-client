@@ -25,23 +25,28 @@ function App() {
     setSelectedNote(note);
   };
 
-
-  if(selectedNote) {
+  if (selectedNote) {
     return (
       <div>
-      <SingleNote note={selectedNote} back={showSingleNote}/>
+        <SingleNote note={selectedNote} back={showSingleNote} />
       </div>
-     
     );
   } else {
     return (
-      <div class="container">
-        <div class="columns is-multiline is-centered is-vcentered ">
-          {data.map((note) => (
-            <div key={note.id}>
-              <NoteCard note={note} back={showSingleNote} />
-            </div>
-          ))}
+      <div>
+      <div class=" section  custom-background text-align">
+      <h1 class="title is-1 color-black" >My Notes</h1>
+      <button class="button is-black">Create New Note</button>
+      </div>
+      
+        <div class="container section">
+          <div class="columns is-multiline is-centered is-vcentered ">
+            {data.map((note) => (
+              <div key={note.id}>
+                <NoteCard note={note} back={showSingleNote} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
