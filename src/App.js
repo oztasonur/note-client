@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import api from "./api/AxiosConfig";
 import NoteCard from "./components/NoteCard";
 import SingleNote from "./components/SingleNote";
+import Header from "./components/Header";
 
 function App() {
   const [data, setData] = useState([]);
@@ -28,17 +29,14 @@ function App() {
   if (selectedNote) {
     return (
       <div>
+        
         <SingleNote note={selectedNote} back={showSingleNote} />
       </div>
     );
   } else {
     return (
       <div>
-      <div class=" section  custom-background text-align">
-      <h1 class="title is-1 color-black" >My Notes</h1>
-      <button class="button is-black">Create New Note</button>
-      </div>
-      
+      <Header />     
         <div class="container section">
           <div class="columns is-multiline is-centered is-vcentered ">
             {data.map((note) => (
