@@ -2,9 +2,9 @@ import "./index.css";
 import "bulma/css/bulma.css";
 import React, { useEffect, useState } from "react";
 import api from "./api/AxiosConfig";
-import NoteCard from "./components/NoteCard";
 import SingleNote from "./components/SingleNote";
 import Header from "./components/Header";
+import NoteList from "./components/NoteList";
 
 function App() {
   const [data, setData] = useState([]);
@@ -22,30 +22,22 @@ function App() {
 
     fetchData();
   }, []);
-  const showSingleNote = (note) => {
+  
+  const showSelectedNote = (note) => {
     setSelectedNote(note);
   };
 
   if (selectedNote) {
     return (
       <div>
-        
-        <SingleNote note={selectedNote} back={showSingleNote} />
+        <SingleNote note={selectedNote} cancelButton={showSelectedNote} />
       </div>
     );
   } else {
     return (
       <div>
-      <Header />     
-        <div class="container section">
-          <div class="columns is-multiline is-centered is-vcentered ">
-            {data.map((note) => (
-              <div key={note.id}>
-                <NoteCard note={note} back={showSingleNote} />
-              </div>
-            ))}
-          </div>
-        </div>
+      <Header />
+      <NoteList notes={data} showSelectedNote={showSelectedNote}/>      
       </div>
     );
   }
