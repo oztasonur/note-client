@@ -12,16 +12,17 @@ function App() {
   const [selectedNote, setSelectedNote] = useState(null);
   const [newNote, setNewNote] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/notes");
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
 
+  const fetchData = async () => {
+    try {
+      const response = await api.get("/notes");
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -30,12 +31,17 @@ function App() {
   };
 
   const showNewNote = () => {
-    setNewNote(true);
+    if(newNote) {
+      setNewNote(false);
+    } else {
+      setNewNote(true);
+    }
+    
   };
 
   if (newNote) {
     return(
-      <NewNote />
+      <NewNote showNewNote={showNewNote} fetchData={fetchData} cancelButton={showSelectedNote}/>
     );
     
   } else if (selectedNote) {
