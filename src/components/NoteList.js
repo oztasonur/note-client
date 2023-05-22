@@ -8,6 +8,7 @@ function NoteList({ notes, showSelectedNote }) {
     <div class="columns is-multiline is-centered is-vcentered ">
       {notes.map((note) => (
         <div key={note.id}>
+          <div>{note.content.length}</div>
           <NoteCard note={note} back={showSelectedNote} />
         </div>
       ))}

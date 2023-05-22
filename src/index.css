@@ -1,6 +1,5 @@
 html, body {
-  height: 110%; /* Ensure the elements cover the full height of the viewport */
-  background-color: #202035; /* Set your desired background color */
+  background-color: #202035;
 }
 
 code {
