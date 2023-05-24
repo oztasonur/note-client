@@ -25,7 +25,8 @@ function SingleNote({ note, cancelButton, fetchData }) {
 
 
 
-  const handleEdit = () => {
+  const handleEdit = (e) => {
+    e.preventDefault();
     if(edit) {
         setEdit(false);
     } else {
@@ -57,7 +58,6 @@ function SingleNote({ note, cancelButton, fetchData }) {
             Edit
           </button>
           <button class="button is-info custom-background" onClick={handleDeleteNote}>Delete</button>
-          <button class="button is-info custom-background">Save</button>
         </div>
       </div>
     );
