@@ -25,7 +25,7 @@ function NewNote({ showNewNote, fetchData, cancelButton }) {
   };
 
   return (
-    <div class="section">
+    <div class="section bg">
       <div class="message-header custom-background">
         <p>Title</p>
         <button
