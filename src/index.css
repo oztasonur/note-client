@@ -28,4 +28,9 @@ code {
   color: black !important;
 }
 
+.max {
+  height: 200px;
+  width: 400px !important;
+}
+
 

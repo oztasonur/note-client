@@ -2,13 +2,28 @@ import "bulma/css/bulma.css";
 import "../index.css";
 import { useState } from "react";
 import EditNote from "./EditNote";
+import api from "../api/AxiosConfig";
 
-function SingleNote({ note, cancelButton }) {
+function SingleNote({ note, cancelButton, fetchData }) {
   const [edit, setEdit] = useState(false);
 
   const handleDelete = () => {
     cancelButton(null);
   };
+
+  const handleDeleteNote = async () => {
+    try {
+      await api.delete(`/notes/${note.id}`);
+      cancelButton(null);
+      fetchData();
+      console.log(note.id)
+    } catch (error) {
+      console.error("Error deleting note:", error);
+      console.log(note.id)
+    }
+  };
+
+
 
   const handleEdit = () => {
     if(edit) {
@@ -41,7 +56,7 @@ function SingleNote({ note, cancelButton }) {
           <button class="button is-info custom-background" onClick={handleEdit}>
             Edit
           </button>
-          <button class="button is-info custom-background">Delete</button>
+          <button class="button is-info custom-background" onClick={handleDeleteNote}>Delete</button>
           <button class="button is-info custom-background">Save</button>
         </div>
       </div>

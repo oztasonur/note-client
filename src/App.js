@@ -47,7 +47,7 @@ function App() {
   } else if (selectedNote) {
     return (
       <div>
-        <SingleNote note={selectedNote} cancelButton={showSelectedNote} />
+        <SingleNote note={selectedNote} cancelButton={showSelectedNote} fetchData={fetchData}/>
       </div>
     );
   } else {
